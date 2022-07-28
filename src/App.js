@@ -7,6 +7,19 @@ function App() {
   const [todoInput, setTodoInput] = useState("");
   const [todos, setTodos] = useState([]);
 
+  /** Function to Reset Application */
+  function resetApp() {
+    setTodos([]);
+  }
+
+  /** Function which is used to Sort Todos */
+  function sortTodos(todos) {
+    // Sorting Todos in Descending Order
+    let incompleteTasks = todos.filter((todo) => todo.completed_at == null).sort((a, b) => b.created_at - a.created_at);
+    let completeTasks = todos.filter((todo) => todo.completed_at != null).sort((a, b) => b.completed_at - a.completed_at);
+    setTodos([...incompleteTasks, ...completeTasks]);
+  }
+
   /** Function to mark a todo as complete */
   function handleMarkComplete(todoId) {
     let newTodos = todos.map((todo) => {
@@ -16,21 +29,7 @@ function App() {
       return todo;
     });
 
-
     sortTodos(newTodos);
-
-  }
-
-  /** Function to Reset Application */
-  function resetApp() {
-    setTodos([]);
-  }
-
-  /** Function which is used to Sort Todos */
-  function sortTodos(todos) {
-    let incompleteTasks = todos.filter((todo) => todo.completed_at == null).sort((a, b) => b.created_at - a.created_at);
-    let completeTasks = todos.filter((todo) => todo.completed_at != null).sort((a, b) => b.completed_at - a.completed_at);
-    setTodos([...incompleteTasks, ...completeTasks]);
   }
 
 
@@ -45,13 +44,14 @@ function App() {
     }
   }, []);
 
+
   //Update todos in Localstorage, if todos in state updates
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
 
   }, [todos]);
 
-
+  /** Create new Todo when Enter is pressed */
   function handleTodoSubmit(e) {
     if (e.key === 'Enter') {
       let title = todoInput;
@@ -90,7 +90,13 @@ function App() {
             {todos.map((todo) => <TodoList key={todo.todo_id} todo={todo} markComplete={handleMarkComplete} />)}
           </ul>
         </section>
+
+        <footer>
+          Created by Vivek Bora
+        </footer>
       </main>
+
+      
     </div>
   );
 }
