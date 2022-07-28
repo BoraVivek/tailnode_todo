@@ -1,21 +1,27 @@
-function TodoList({todoList}){
-    return(
-        <li className='todo_item'>
-              <div className='todo_title'>
-                Testing Todo List
-              </div>
-              <div className='todo_category'>
+import Moment from 'react-moment';
+
+
+function TodoList({ todo, markComplete }) {
+    return (
+        <li className='todo_item' onClick={() => markComplete(todo.todo_id)}>
+            <div className='todo_title'>
+                {todo.title}
+            </div>
+            {/* <div className='todo_category'>
                 Category
-              </div>
-              <div className='due_date'>
-                <img alt='created_at' src='./icons/due_date.svg' />
-                Due Date
-              </div>
-              <div className='created_at'>
+              </div> */}
+            {todo.completed_at &&
+                <div className='due_date'>
+                    <img alt='created_at' src='./icons/completed.svg' />
+                    <Moment fromNow>{todo.completed_at}</Moment>
+                </div>
+            }
+
+            <div className='created_at'>
                 <img alt='created_at' src='./icons/created_at.svg' />
-                Time Created at
-              </div>
-            </li>
+                <Moment fromNow>{todo.created_at}</Moment>
+            </div>
+        </li>
     );
 }
 

@@ -28,22 +28,7 @@
   box-shadow: var(--box-shadow);
 }
 
-#input_section{
-  width: 60vw;
-  margin: 0 auto;
-}
 
-.todo_input{
-  width: 58vw;
-  padding: 15px 10px;
-  border-radius: 5px;
-  border: none;
-  margin-top: 20px;
-}
-
-.todo_input:focus{
-  outline: none;
-}
 
 /** TODO Container **/
 .todo_container{
@@ -52,6 +37,23 @@
   margin: 30px auto;
   padding: 10px;
   border-radius: 5px;
+}
+
+#input_section{
+  width: 100%;
+  margin: 0 auto;;
+}
+
+.todo_input{
+  width: inherit;
+  padding: 15px 10px;
+  border-radius: 5px;
+  border: none;
+  margin-top: 10px;
+}
+
+.todo_input:focus{
+  outline: none;
 }
 
 
@@ -71,6 +73,7 @@
   color: white;
   border-radius: 5px;
   position: relative;
+  margin-top: 15px;
 }
 
 .todo_title{
