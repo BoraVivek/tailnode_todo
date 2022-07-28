@@ -5,34 +5,50 @@ import { useEffect, useState } from 'react';
 function App() {
 
   const [todoInput, setTodoInput] = useState("");
-
-
   const [todos, setTodos] = useState([]);
 
-  function handleMarkComplete(todoId){
+  /** Function to mark a todo as complete */
+  function handleMarkComplete(todoId) {
     let newTodos = todos.map((todo) => {
-      if(todo.todo_id === todoId){
-        return {...todo, completed_at: Date.now()};
+      if (todo.todo_id === todoId && todo.completed_at == null) {
+        return { ...todo, completed_at: Date.now() };
       }
       return todo;
     });
 
-    setTodos(newTodos);
+
+    sortTodos(newTodos);
+
   }
 
-  
+  /** Function to Reset Application */
+  function resetApp() {
+    setTodos([]);
+  }
+
+  /** Function which is used to Sort Todos */
+  function sortTodos(todos) {
+    let incompleteTasks = todos.filter((todo) => todo.completed_at == null).sort((a, b) => b.created_at - a.created_at);
+    let completeTasks = todos.filter((todo) => todo.completed_at != null).sort((a, b) => b.completed_at - a.completed_at);
+    setTodos([...incompleteTasks, ...completeTasks]);
+  }
+
+
   //Get todos Stored in LocalStorage, and set them in state
   useEffect(() => {
     let storedTodos = JSON.parse(localStorage.getItem("todos"));
-    
-    if(storedTodos.length > 0){
-      setTodos(storedTodos);
+
+    console.log(storedTodos);
+
+    if (storedTodos?.length > 0) {
+      sortTodos(storedTodos);
     }
   }, []);
 
   //Update todos in Localstorage, if todos in state updates
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
+
   }, [todos]);
 
 
@@ -41,16 +57,16 @@ function App() {
       let title = todoInput;
       let createdAt = Date.now();
 
-      setTodos([...todos, {
+      setTodos([{
         todo_id: todos.length,
         title: title,
         created_at: createdAt,
         completed_at: null
-      }]);
+      }, ...todos]);
+
+      setTodoInput("");
     }
   }
-
-
 
   return (
     <div className="todo_app">
@@ -62,10 +78,14 @@ function App() {
 
       <main className='todo_container'>
         <section id='input_section'>
-          <input type="text" className='todo_input' name='todo_input' placeholder='Enter your Todo List' onChange={(e) => setTodoInput(e.target.value)} onKeyUp={handleTodoSubmit} />
+          <input type="text" className='todo_input' name='todo_input' value={todoInput} placeholder='Enter your Todo List' onChange={(e) => setTodoInput(e.target.value)} onKeyUp={handleTodoSubmit} />
         </section>
 
         <section id='todo_items'>
+          <div className='reset_button' onClick={resetApp}>
+            <img src="./icons/reset.svg" alt="Reset Todos" />
+            Reset Todos
+          </div>
           <ul className='todo_items_list'>
             {todos.map((todo) => <TodoList key={todo.todo_id} todo={todo} markComplete={handleMarkComplete} />)}
           </ul>

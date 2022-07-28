@@ -12,13 +12,13 @@ function TodoList({ todo, markComplete }) {
               </div> */}
             {todo.completed_at &&
                 <div className='due_date'>
-                    <img alt='created_at' src='./icons/completed.svg' />
+                     <img alt='created_at' src='./icons/completed.svg' />Completed:
                     <Moment fromNow>{todo.completed_at}</Moment>
                 </div>
             }
 
             <div className='created_at'>
-                <img alt='created_at' src='./icons/created_at.svg' />
+                <img alt='created_at' src='./icons/created_at.svg' />Created: 
                 <Moment fromNow>{todo.created_at}</Moment>
             </div>
         </li>

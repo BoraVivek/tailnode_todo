@@ -63,7 +63,16 @@
 }
 
 .todo_items_list{
-  margin-top: 20px;
+  margin-top: 5px;
+}
+
+.reset_button{
+  display: flex;
+  color: white;
+  gap: 5px;
+  justify-content: end;
+  margin-top: 10px;
+  cursor: pointer;
 }
 
 .todo_item{
@@ -92,14 +101,14 @@
 
 .created_at{
   display: flex;
-  gap: 5px;
+  gap: 3px;
   align-items: center;
   justify-content: end;
 }
 
 .due_date{
   display: flex;
-  gap: 5px;
+  gap: 3px;
   align-items: center;
   margin-top: 10px;
 }
