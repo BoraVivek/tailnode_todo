@@ -78,7 +78,7 @@ function App() {
 
       <main className='todo_container'>
         <section id='input_section'>
-          <input type="text" className='todo_input' name='todo_input' value={todoInput} placeholder='Enter your Todo List' onChange={(e) => setTodoInput(e.target.value)} onKeyUp={handleTodoSubmit} />
+          <input type="text" className='todo_input' name='todo_input' value={todoInput} placeholder='Enter your Task Here...' onChange={(e) => setTodoInput(e.target.value)} onKeyUp={handleTodoSubmit} />
         </section>
 
         <section id='todo_items'>
@@ -87,7 +87,9 @@ function App() {
             Reset Todos
           </div>
           <ul className='todo_items_list'>
-            {todos.map((todo) => <TodoList key={todo.todo_id} todo={todo} markComplete={handleMarkComplete} />)}
+            {todos.length > 0 ? 
+            todos.map((todo) => <TodoList key={todo.todo_id} todo={todo} markComplete={handleMarkComplete} />) : 
+            <div className='tasks_dont_exist'>No Tasks Exist, Add some tasks</div>}
           </ul>
         </section>
 

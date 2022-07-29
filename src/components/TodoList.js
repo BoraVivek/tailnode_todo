@@ -3,13 +3,10 @@ import Moment from 'react-moment';
 
 function TodoList({ todo, markComplete }) {
     return (
-        <li className='todo_item' onClick={() => markComplete(todo.todo_id)}>
+        <li className={`todo_item ${todo.completed_at != null ? "completed_task" : ''}`}  onClick={() => markComplete(todo.todo_id)}>
             <div className='todo_title'>
                 {todo.title}
             </div>
-            {/* <div className='todo_category'>
-                Category
-              </div> */}
             {todo.completed_at &&
                 <div className='due_date'>
                      <img alt='created_at' src='./icons/completed.svg' />Completed:

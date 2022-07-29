@@ -24,9 +24,10 @@
   padding: 10px;
   border-radius: 5px;
   font-size: 20px;
-  backdrop-filter: blur(5px);
+  font-weight: bold;
   box-shadow: var(--box-shadow);
 }
+
 
 
 
@@ -37,6 +38,7 @@
   margin: 30px auto;
   padding: 10px;
   border-radius: 5px;
+  box-shadow: var(--box-shadow);
 }
 
 #input_section{
@@ -70,7 +72,7 @@
   display: flex;
   color: white;
   gap: 5px;
-  justify-content: end;
+  justify-content: flex-end;
   margin-top: 10px;
   cursor: pointer;
 }
@@ -83,6 +85,10 @@
   border-radius: 5px;
   position: relative;
   margin-top: 15px;
+}
+
+.completed_task{
+  background-color: rgb(96, 95, 95);
 }
 
 .todo_title{
@@ -103,7 +109,7 @@
   display: flex;
   gap: 3px;
   align-items: center;
-  justify-content: end;
+  justify-content: flex-end;
 }
 
 .due_date{
@@ -121,58 +127,7 @@ footer{
   font-size: 18px;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.tasks_dont_exist{
   color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  text-align: center;
 }
